@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="_ds/nocturne-93239c91-0622-464f-a5c5-4ef479a94744/styles.css" />
+<script src="_ds/nocturne-93239c91-0622-464f-a5c5-4ef479a94744/_ds_bundle.js"></script>
+<script src="image-slot.js"></script>
+<style>
+/* Nocturne tokens, retuned to the Kaiju brand: cream ground, cobalt accent,
+   deep-navy ink. Token names and the system's grammar are unchanged. */
+:root{
+  --color-bg:#F7F3EA; --color-surface:#FFFDF7; --color-text:#0C1631;
+  --color-accent:#1740D6; --color-accent-2:#1740D6;
+  --color-divider:rgba(12,22,49,.14);
+  --color-accent-100:#EDF1FE; --color-accent-200:#DCE4FD; --color-accent-300:#B9C8FA;
+  --color-accent-400:#7C97F3; --color-accent-500:#1740D6; --color-accent-600:#1235AE;
+  --color-accent-700:#0E2A88; --color-accent-800:#0A1F63; --color-accent-900:#071540;
+  --color-section:#0E2A88; --color-section-glow:#1740D6; --color-section-ghost:#5A79EE;
+  --shadow-sm:0 0 0 1px rgba(12,22,49,.10);
+  --shadow-md:0 1px 2px rgba(12,22,49,.06), 0 12px 28px -14px rgba(12,22,49,.24);
+  --shadow-lg:0 0 0 1px rgba(12,22,49,.07), 0 40px 90px -34px rgba(12,22,49,.45);
+  --cobalt:#1740D6; --cobalt-hi:#3A63F0; --cream-sunk:#EEE8DA;
+  --ink-72:rgba(12,22,49,.72); --ink-52:rgba(12,22,49,.52); --ink-36:rgba(12,22,49,.36);
+  --stage:#0A1024; --stage-2:#131B33; --stage-3:#1E2847;
+  --stage-line:rgba(255,255,255,.09); --stage-ink:#E7EAF4; --stage-ink-56:rgba(231,234,244,.56);
+  --edge:clamp(20px,5vw,72px); --lead:28px;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);font-size:17px;line-height:1.65;text-wrap:pretty}
+a{color:var(--cobalt);text-decoration:none}
+a:hover{color:var(--cobalt-hi)}
+::selection{background:rgba(23,64,214,.16)}
+@keyframes k-blink{0%,55%{opacity:1}70%,100%{opacity:.25}}
+@keyframes k-toast{0%,4%{opacity:0;transform:translateY(10px)}9%,32%{opacity:1;transform:translateY(0)}40%,100%{opacity:0;transform:translateY(10px)}}
+@keyframes k-trim{0%,8%{left:0%;right:0%}42%,62%{left:14%;right:24%}96%,100%{left:0%;right:0%}}
+@keyframes k-playhead{0%{left:16%}100%{left:70%}}
+@keyframes k-bar{0%,100%{transform:scaleY(.28)}50%{transform:scaleY(1)}}
+@keyframes k-flow{0%{background-position:0 0}100%{background-position:24px 0}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}}
+</style>
+</helmet>
+
+<div style="overflow-x:clip">
+
+<nav style="position:sticky;top:0;z-index:60;background:rgba(247,243,234,.86);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--color-divider)">
+  <div style="max-width:1200px;margin:0 auto;padding:0 var(--edge);height:60px;display:flex;align-items:center;gap:28px">
+    <a href="#top" style="display:flex;align-items:center;gap:9px;color:var(--color-text)">
+      <span style="width:22px;height:22px;border-radius:6px;background:var(--cobalt);display:block;box-shadow:0 3px 10px -3px rgba(23,64,214,.7)"></span>
+      <span style="font-family:var(--font-heading);font-weight:600;font-size:18px;letter-spacing:-.02em">Kaiju</span>
+    </a>
+    <div style="flex:1"></div>
+    <div style="display:flex;align-items:center;gap:26px;font-size:14.5px;color:var(--ink-72)">
+      <a href="#features" style="color:inherit">Features</a>
+      <a href="#download" style="color:inherit">Download</a>
+      <a href="#faq" style="color:inherit">FAQ</a>
+    </div>
+    <a href="#download" style="display:inline-flex;align-items:center;height:34px;padding:0 16px;border-radius:8px;background:var(--cobalt);color:#fff;font-family:var(--font-heading);font-weight:500;font-size:14.5px;letter-spacing:-.01em">Download</a>
+  </div>
+</nav>
+
+<section id="top" style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,104px) var(--edge) 0">
+  <h1 style="font-family:var(--font-heading);font-weight:500;font-size:clamp(44px,6.3vw,90px);line-height:1.04;letter-spacing:-.032em;margin:0 0 0 -.05em;max-width:16ch">
+    <span style="display:block">Your gaming moments.</span>
+    <span style="display:block;color:var(--cobalt)">Captured instantly.</span>
+  </h1>
+  <p style="font-size:19px;line-height:1.6;color:var(--ink-72);max-width:52ch;margin:26px 0 0">Kaiju is a fast gaming clip recorder and editor for Mac. Instant Replay keeps the last thirty seconds ready, so the moment is already saved before you think to save it.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:30px">
+    <a href="#download" style="display:inline-flex;align-items:center;gap:9px;height:46px;padding:0 22px;border-radius:10px;background:var(--cobalt);color:#fff;font-family:var(--font-heading);font-weight:500;font-size:16px;letter-spacing:-.01em;box-shadow:0 10px 24px -12px rgba(23,64,214,.8)">Download Kaiju</a>
+    <a href="#showcase" style="display:inline-flex;align-items:center;height:46px;padding:0 20px;border-radius:10px;border:1px solid rgba(23,64,214,.4);color:var(--cobalt);font-family:var(--font-heading);font-weight:500;font-size:16px;letter-spacing:-.01em">See Kaiju</a>
+    <span style="font-size:13.5px;color:var(--ink-36);margin-left:6px">macOS 14 · Apple silicon</span>
+  </div>
+</section>
+
+<section id="showcase" style="max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,64px) var(--edge) 0;perspective:2000px">
+  <div data-k="herowin" style="position:relative;border-radius:16px;background:var(--stage);box-shadow:var(--shadow-lg);border:1px solid var(--stage-line);overflow:hidden;color:var(--stage-ink);transform-origin:50% 0%">
+    <div style="height:46px;display:flex;align-items:center;gap:8px;padding:0 16px;border-bottom:1px solid var(--stage-line);background:linear-gradient(180deg,#151E3A,#101733)">
+      <span style="width:11px;height:11px;border-radius:50%;background:#E4695E"></span>
+      <span style="width:11px;height:11px;border-radius:50%;background:#DCA33C"></span>
+      <span style="width:11px;height:11px;border-radius:50%;background:#4FA85C"></span>
+      <span style="flex:1;text-align:center;font-size:12.5px;letter-spacing:.01em;color:var(--stage-ink-56);font-family:var(--font-heading)">Kaiju — Library</span>
+      <span style="display:inline-flex;align-items:center;gap:7px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#F0B4AE">
+        <span style="width:7px;height:7px;border-radius:50%;background:#E4695E;animation:k-blink 2.4s infinite"></span>Replay armed
+      </span>
+    </div>
+    <div style="display:grid;grid-template-columns:200px minmax(0,1fr)">
+      <aside style="border-right:1px solid var(--stage-line);padding:16px 12px;display:flex;flex-direction:column;gap:3px;background:rgba(255,255,255,.015)">
+        <span style="font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:rgba(231,234,244,.38);padding:4px 10px 8px">Library</span>
+        <span style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;background:rgba(23,64,214,.26);box-shadow:inset 0 0 0 1px rgba(90,121,238,.5);font-size:14px;font-family:var(--font-heading)">All clips <span style="margin-left:auto;font-size:12px;color:var(--stage-ink-56)">128</span></span>
+        <span style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:rgba(231,234,244,.72)">Instant Replay <span style="margin-left:auto;font-size:12px;color:rgba(231,234,244,.4)">41</span></span>
+        <span style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:rgba(231,234,244,.72)">Recordings <span style="margin-left:auto;font-size:12px;color:rgba(231,234,244,.4)">62</span></span>
+        <span style="display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:14px;color:rgba(231,234,244,.72)">Exports <span style="margin-left:auto;font-size:12px;color:rgba(231,234,244,.4)">25</span></span>
+        <div style="margin-top:auto;padding:14px 10px 4px">
+          <div style="display:flex;justify-content:space-between;font-size:11.5px;color:rgba(231,234,244,.44);margin-bottom:7px"><span>Clip storage</span><span>34.2 GB</span></div>
+          <div style="height:4px;border-radius:99px;background:rgba(255,255,255,.1)"><div style="width:46%;height:100%;border-radius:99px;background:var(--color-section-ghost)"></div></div>
+        </div>
+      </aside>
+      <div style="padding:16px 18px 22px;min-width:0">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+          <span style="font-family:var(--font-heading);font-size:15px">All clips</span>
+          <span style="font-size:12.5px;color:var(--stage-ink-56)">· Today</span>
+          <div style="flex:1"></div>
+          <span style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;background:rgba(255,255,255,.06);font-size:12.5px;color:var(--stage-ink-56)">Search clips</span>
+          <span style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;border:1px solid var(--stage-line);font-size:12.5px;color:var(--stage-ink-56)">Newest</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px">
+          <div style="border-radius:10px;overflow:hidden;box-shadow:0 0 0 2px var(--cobalt)">
+            <div style="aspect-ratio:16/9;background:radial-gradient(120% 130% at 20% 10%,#24325C,#0E1428 70%);position:relative">
+              <span style="position:absolute;left:8px;top:8px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#B9C8FA;background:rgba(10,16,36,.7);padding:3px 6px;border-radius:5px">Replay</span>
+              <span style="position:absolute;right:8px;bottom:8px;font-size:11px;color:#E7EAF4;background:rgba(10,16,36,.72);padding:2px 6px;border-radius:5px;font-variant-numeric:tabular-nums">0:32</span>
+            </div>
+            <div style="padding:9px 10px 11px;background:var(--stage-2)">
+              <div style="font-size:13.5px;font-family:var(--font-heading)">Clutch 1v3 — ranked</div>
+              <div style="font-size:11.5px;color:var(--stage-ink-56);font-variant-numeric:tabular-nums;margin-top:2px">2 min ago · 183 MB</div>
+            </div>
+          </div>
+          <div style="border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px var(--stage-line)">
+            <div style="aspect-ratio:16/9;background:radial-gradient(120% 130% at 70% 20%,#1D2A4E,#0C1224 72%);position:relative">
+              <span style="position:absolute;right:8px;bottom:8px;font-size:11px;color:#E7EAF4;background:rgba(10,16,36,.72);padding:2px 6px;border-radius:5px;font-variant-numeric:tabular-nums">0:18</span>
+            </div>
+            <div style="padding:9px 10px 11px;background:var(--stage-2)">
+              <div style="font-size:13.5px;font-family:var(--font-heading)">Boss kill — final phase</div>
+              <div style="font-size:11.5px;color:var(--stage-ink-56);font-variant-numeric:tabular-nums;margin-top:2px">18 min ago · 96 MB</div>
+            </div>
+          </div>
+          <div style="border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px var(--stage-line)">
+            <div style="aspect-ratio:16/9;background:radial-gradient(120% 130% at 35% 80%,#22305A,#0B1122 70%);position:relative">
+              <span style="position:absolute;right:8px;bottom:8px;font-size:11px;color:#E7EAF4;background:rgba(10,16,36,.72);padding:2px 6px;border-radius:5px;font-variant-numeric:tabular-nums">1:04</span>
+            </div>
+            <div style="padding:9px 10px 11px;background:var(--stage-2)">
+              <div style="font-size:13.5px;font-family:var(--font-heading)">Squad wipe on defense</div>
+              <div style="font-size:11.5px;color:var(--stage-ink-56);font-variant-numeric:tabular-nums;margin-top:2px">1 hr ago · 341 MB</div>
+            </div>
+          </div>
+          <div style="border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px var(--stage-line)">
+            <div style="aspect-ratio:16/9;background:radial-gradient(120% 130% at 60% 40%,#1B2648,#0A1020 74%);position:relative">
+              <span style="position:absolute;left:8px;top:8px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#B9C8FA;background:rgba(10,16,36,.7);padding:3px 6px;border-radius:5px">Replay</span>
+              <span style="position:absolute;right:8px;bottom:8px;font-size:11px;color:#E7EAF4;background:rgba(10,16,36,.72);padding:2px 6px;border-radius:5px;font-variant-numeric:tabular-nums">0:30</span>
+            </div>
+            <div style="padding:9px 10px 11px;background:var(--stage-2)">
+              <div style="font-size:13.5px;font-family:var(--font-heading)">Speedrun PB — final split</div>
+              <div style="font-size:11.5px;color:var(--stage-ink-56);font-variant-numeric:tabular-nums;margin-top:2px">Yesterday · 118 MB</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="position:absolute;right:22px;bottom:22px;display:flex;align-items:center;gap:11px;padding:11px 15px;border-radius:12px;background:rgba(12,18,40,.86);backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(90,121,238,.4),0 18px 40px -18px rgba(0,0,0,.8);animation:k-toast 9s ease-in-out infinite">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:var(--cobalt);font-size:12px;font-family:var(--font-heading);color:#fff">⇧</span>
+      <span style="font-size:13px;line-height:1.35"><span style="font-family:var(--font-heading)">Replay saved</span><br /><span style="color:var(--stage-ink-56);font-variant-numeric:tabular-nums">Last 0:30 · 183 MB</span></span>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Kaiju workflow" style="margin-top:clamp(64px,8vw,110px);background:radial-gradient(900px 420px at 84% -30%,color-mix(in srgb,var(--color-section-glow) 66%,transparent),transparent 62%),var(--color-section);color:#EFF2FE">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(44px,5vw,68px) var(--edge)">
+    <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px 24px;margin-bottom:34px">
+      <h2 style="font-family:var(--font-heading);font-weight:500;font-size:clamp(26px,2.7vw,36px);letter-spacing:-.02em;margin:0;color:#fff">Capture → Edit → Compress → Share</h2>
+      <p style="margin:0;font-size:15.5px;color:rgba(239,242,254,.66)">Four steps, one window, no round trip through another app.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:rgba(255,255,255,.14);border-radius:12px;overflow:hidden">
+      <div data-k="step" data-i="0" style="background:var(--color-section);padding:22px 20px 24px;transition:background .5s ease,opacity .5s ease">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:44px">
+          <span style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#B9C8FA;font-variant-numeric:tabular-nums">01 Capture</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px"><span style="width:9px;height:9px;border-radius:50%;background:#E4695E;animation:k-blink 2s infinite"></span><span style="font-size:12.5px;color:rgba(239,242,254,.7);font-variant-numeric:tabular-nums">REC 00:00:12</span></div>
+        <div style="font-family:var(--font-heading);font-size:19px;letter-spacing:-.015em">Save the moment instantly.</div>
+      </div>
+      <div data-k="step" data-i="1" style="background:var(--color-section);padding:22px 20px 24px;transition:background .5s ease,opacity .5s ease">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:44px">
+          <span style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#B9C8FA;font-variant-numeric:tabular-nums">02 Edit</span>
+        </div>
+        <div style="position:relative;height:26px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden;margin-bottom:16px">
+          <div style="position:absolute;top:0;bottom:0;background:rgba(90,121,238,.55);box-shadow:inset 0 0 0 1px rgba(185,200,250,.7);animation:k-trim 7s ease-in-out infinite"></div>
+        </div>
+        <div style="font-family:var(--font-heading);font-size:19px;letter-spacing:-.015em">Trim and clean up the clip.</div>
+      </div>
+      <div data-k="step" data-i="2" style="background:var(--color-section);padding:22px 20px 24px;transition:background .5s ease,opacity .5s ease">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:44px">
+          <span style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#B9C8FA;font-variant-numeric:tabular-nums">03 Compress</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-variant-numeric:tabular-nums">
+          <span style="font-size:15px;color:rgba(239,242,254,.5);text-decoration:line-through">183 MB</span>
+          <span style="color:#B9C8FA">→</span>
+          <span style="font-family:var(--font-heading);font-size:24px;letter-spacing:-.02em">25 MB</span>
+        </div>
+        <div style="font-family:var(--font-heading);font-size:19px;letter-spacing:-.015em">Choose exactly how large the file should be.</div>
+      </div>
+      <div data-k="step" data-i="3" style="background:var(--color-section);padding:22px 20px 24px;transition:background .5s ease,opacity .5s ease">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:44px">
+          <span style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#B9C8FA;font-variant-numeric:tabular-nums">04 Share</span>
+        </div>
+        <div style="display:flex;gap:7px;margin-bottom:16px">
+          <span style="font-size:11.5px;padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.12)">Discord</span>
+          <span style="font-size:11.5px;padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.12)">YouTube</span>
+          <span style="font-size:11.5px;padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.12)">Files</span>
+        </div>
+        <div style="font-family:var(--font-heading);font-size:19px;letter-spacing:-.015em">Export it where you need it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" data-reveal="1" style="max-width:1200px;margin:0 auto;padding:clamp(70px,9vw,132px) var(--edge) 0;opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)">
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,5vw,80px);align-items:center">
+    <div>
+      <span style="display:block;font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--cobalt);margin-bottom:20px">Target file size</span>
+      <h2 style="font-family:var(--font-heading);font-weight:500;font-size:clamp(34px,4.4vw,60px);line-height:1.06;letter-spacing:-.028em;margin:0 0 0 -.04em;max-width:18ch">Tell Kaiju the size you want. Kaiju handles the rest.</h2>
+      <p style="font-size:18px;color:var(--ink-72);max-width:44ch;margin:22px 0 34px">No bitrate tables, no codec settings. Pick a number, get a file just under it — every time.</p>
+      <div style="display:flex;align-items:center;gap:clamp(18px,3vw,38px);font-variant-numeric:tabular-nums">
+        <div>
+          <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-36);margin-bottom:6px">Original</div>
+          <div style="font-family:var(--font-heading);font-size:clamp(30px,3.4vw,44px);letter-spacing:-.03em;color:var(--ink-36);text-decoration:line-through;text-decoration-thickness:1.5px">183 MB</div>
+        </div>
+        <span style="font-size:26px;color:var(--cobalt)">→</span>
+        <div>
+          <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);margin-bottom:6px">Kaiju</div>
+          <div data-k="bigmb" style="font-family:var(--font-heading);font-size:clamp(44px,6vw,84px);line-height:1;letter-spacing:-.035em;color:var(--cobalt)">25 MB</div>
+        </div>
+      </div>
+    </div>
+    <div style="border-radius:14px;background:var(--stage);color:var(--stage-ink);box-shadow:var(--shadow-lg);border:1px solid var(--stage-line);overflow:hidden">
+      <div style="padding:16px 20px;border-bottom:1px solid var(--stage-line);display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,#151E3A,#101733)">
+        <span style="font-family:var(--font-heading);font-size:14.5px">Export clip</span>
+        <span style="font-size:12.5px;color:var(--stage-ink-56)">Clutch 1v3 — ranked</span>
+      </div>
+      <div style="padding:22px 20px 24px">
+        <div style="font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:rgba(231,234,244,.4);margin-bottom:12px">Target size</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">
+          <button type="button" data-k="chip" data-mb="10" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid var(--stage-line);background:transparent;color:var(--stage-ink);font-family:var(--font-heading);font-size:14px;font-variant-numeric:tabular-nums;cursor:pointer;transition:all .2s ease">10 MB</button>
+          <button type="button" data-k="chip" data-mb="25" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid var(--cobalt);background:rgba(23,64,214,.3);color:#fff;font-family:var(--font-heading);font-size:14px;font-variant-numeric:tabular-nums;cursor:pointer;transition:all .2s ease">25 MB</button>
+          <button type="button" data-k="chip" data-mb="50" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid var(--stage-line);background:transparent;color:var(--stage-ink);font-family:var(--font-heading);font-size:14px;font-variant-numeric:tabular-nums;cursor:pointer;transition:all .2s ease">50 MB</button>
+          <button type="button" data-k="chip" data-mb="100" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid var(--stage-line);background:transparent;color:var(--stage-ink);font-family:var(--font-heading);font-size:14px;font-variant-numeric:tabular-nums;cursor:pointer;transition:all .2s ease">100 MB</button>
+          <button type="button" data-k="chip" data-mb="250" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid var(--stage-line);background:transparent;color:var(--stage-ink);font-family:var(--font-heading);font-size:14px;font-variant-numeric:tabular-nums;cursor:pointer;transition:all .2s ease">250 MB</button>
+          <button type="button" data-k="chip" data-mb="40" style="height:38px;padding:0 16px;border-radius:9px;border:1px solid var(--stage-line);background:transparent;color:var(--stage-ink);font-family:var(--font-heading);font-size:14px;cursor:pointer;transition:all .2s ease">Custom</button>
+        </div>
+        <div style="display:grid;gap:1px;background:var(--stage-line);border-radius:10px;overflow:hidden;font-variant-numeric:tabular-nums">
+          <div style="display:flex;justify-content:space-between;padding:11px 14px;background:var(--stage-2);font-size:14px"><span style="color:var(--stage-ink-56)">Original</span><span>183 MB</span></div>
+          <div style="display:flex;justify-content:space-between;padding:11px 14px;background:var(--stage-2);font-size:14px"><span style="color:var(--stage-ink-56)">Target</span><span data-k="target">25 MB</span></div>
+          <div style="display:flex;justify-content:space-between;padding:11px 14px;background:var(--stage-2);font-size:14px"><span style="color:var(--stage-ink-56)">Estimated</span><span data-k="est" style="color:#B9C8FA">24.2 MB</span></div>
+          <div style="display:flex;justify-content:space-between;padding:11px 14px;background:var(--stage-2);font-size:14px"><span style="color:var(--stage-ink-56)">Quality</span><span data-k="qual">High</span></div>
+        </div>
+        <button type="button" data-k="export" style="position:relative;overflow:hidden;width:100%;height:46px;margin-top:16px;border:0;border-radius:10px;background:var(--cobalt);color:#fff;font-family:var(--font-heading);font-weight:500;font-size:15.5px;cursor:pointer">
+          <span data-k="progress" style="position:absolute;left:0;top:0;bottom:0;width:0%;background:rgba(255,255,255,.22)"></span>
+          <span data-k="exportlabel" style="position:relative">Export</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-reveal="1" style="margin-top:clamp(70px,9vw,130px);background:var(--stage);color:var(--stage-ink);opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,96px) var(--edge)">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:34px">
+      <div>
+        <span style="display:block;font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:#B9C8FA;margin-bottom:16px">Fullscreen theater</span>
+        <h2 style="font-family:var(--font-heading);font-weight:500;font-size:clamp(30px,3.8vw,50px);line-height:1.08;letter-spacing:-.028em;margin:0;max-width:22ch">Watch it big. Nothing else in the way.</h2>
+      </div>
+      <p style="margin:0;font-size:16px;color:var(--stage-ink-56);max-width:34ch">Native playback at the clip's real aspect ratio. Controls fade out; the frame stays put.</p>
+    </div>
+    <div data-k="player" style="position:relative;border-radius:14px;overflow:hidden;background:#05080F;box-shadow:0 0 0 1px var(--stage-line),0 50px 100px -40px rgba(0,0,0,.9)">
+      <div style="aspect-ratio:16/9;position:relative">
+        <image-slot id="kaiju-theater" shape="rect" placeholder="Drop a Kaiju clip frame here" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+        <div data-k="captions" style="position:absolute;left:0;right:0;bottom:76px;display:flex;justify-content:center;pointer-events:none">
+          <span style="max-width:70%;text-align:center;font-size:clamp(15px,1.5vw,21px);line-height:1.35;padding:6px 14px;border-radius:8px;background:rgba(5,8,15,.72);color:#F4F6FF">okay okay okay — watch this, watch this</span>
+        </div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:18px 20px;background:linear-gradient(0deg,rgba(5,8,15,.86),transparent)">
+          <div data-k="track" style="height:4px;border-radius:99px;background:rgba(255,255,255,.22);cursor:pointer;margin-bottom:14px">
+            <div data-k="pfill" style="width:22%;height:100%;border-radius:99px;background:var(--cobalt);position:relative"><span style="position:absolute;right:-5px;top:-3px;width:10px;height:10px;border-radius:50%;background:#fff"></span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;color:#EDEFF8">
+            <button type="button" data-k="play" aria-label="Play" style="width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:13px;cursor:pointer">▶</button>
+            <span data-k="ptime" style="font-size:13px;font-variant-numeric:tabular-nums;color:rgba(237,239,248,.8)">0:07 / 0:32</span>
+            <div style="flex:1"></div>
+            <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(237,239,248,.55)">1440p · 60 fps</span>
+            <button type="button" data-k="fs" aria-label="Toggle fullscreen" style="width:34px;height:34px;border:1px solid rgba(255,255,255,.22);border-radius:8px;background:transparent;color:#fff;font-size:13px;cursor:pointer">⤢</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-reveal="1" style="max-width:1200px;margin:0 auto;padding:clamp(70px,9vw,120px) var(--edge) 0;opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)">
+  <div style="display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,5vw,72px);align-items:center">
+    <div>
+      <span style="display:block;font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--cobalt);margin-bottom:18px">The editor</span>
+      <h2 style="font-family:var(--font-heading);font-weight:500;font-size:clamp(34px,4.2vw,58px);line-height:1.06;letter-spacing:-.03em;margin:0 0 0 -.04em">Open. Trim. Export.</h2>
+      <p style="font-size:18px;color:var(--ink-72);max-width:40ch;margin:22px 0 0">Drag the ends, hit export. There are no tracks to manage, no timeline to learn, and nothing to render before you can watch it back.</p>
+    </div>
+    <div style="border-radius:14px;background:var(--stage);color:var(--stage-ink);box-shadow:var(--shadow-lg);border:1px solid var(--stage-line);overflow:hidden">
+      <div style="height:42px;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1px solid var(--stage-line);background:linear-gradient(180deg,#151E3A,#101733);font-size:13px;color:var(--stage-ink-56)">
+        <span style="font-family:var(--font-heading);color:var(--stage-ink);font-size:14px">Trim</span>
+        <span>Clutch 1v3 — ranked · 0:32</span>
+        <div style="flex:1"></div>
+        <span style="padding:4px 10px;border-radius:7px;border:1px solid var(--stage-line)">Mute</span>
+        <span style="padding:4px 10px;border-radius:7px;background:var(--cobalt);color:#fff">Export</span>
+      </div>
+      <div style="padding:18px">
+        <div style="aspect-ratio:16/9;border-radius:10px;background:radial-gradient(120% 130% at 30% 15%,#202C52,#080D1B 72%);position:relative;overflow:hidden">
+          <span style="position:absolute;left:14px;bottom:12px;font-size:12px;color:rgba(231,234,244,.6);font-variant-numeric:tabular-nums">00:04.18</span>
+        </div>
+        <div style="position:relative;margin-top:16px;height:56px;border-radius:9px;background:rgba(255,255,255,.06);overflow:hidden">
+          <div style="position:absolute;inset:0;display:flex;align-items:flex-end;gap:2px;padding:10px 6px;opacity:.5">
+            <span style="flex:1;height:40%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:70%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:55%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:85%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:35%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:60%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:95%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:45%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:75%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:30%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:65%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:50%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:80%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:42%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:68%;background:#5A79EE;border-radius:1px"></span><span style="flex:1;height:36%;background:#5A79EE;border-radius:1px"></span>
+          </div>
+          <div style="position:absolute;top:0;bottom:0;border-left:3px solid var(--cobalt);border-right:3px solid var(--cobalt);background:rgba(23,64,214,.16);animation:k-trim 7s ease-in-out infinite"></div>
+          <div style="position:absolute;top:0;bottom:0;width:2px;background:#fff;animation:k-playhead 7s linear infinite"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:9px;font-size:11.5px;color:rgba(231,234,244,.42);font-variant-numeric:tabular-nums">
+          <span>0:00</span><span>Selection 0:11.4</span><span>0:32</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-reveal="1" style="max-width:1200px;margin:0 auto;padding:clamp(64px,8vw,110px) var(--edge) 0;opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,64px);align-items:center">
+    <div>
+      <span style="display:block;font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--cobalt);margin-bottom:18px">Audio</span>
+      <h2 style="font-family:var(--font-heading);font-weight:500;font-size:clamp(28px,3.2vw,42px);line-height:1.08;letter-spacing:-.026em;margin:0">Game loud. You louder, if you want.</h2>
+      <p style="font-size:17px;color:var(--ink-72);max-width:40ch;margin:18px 0 0">Two faders. Set them once and Kaiju records every clip that way.</p>
+    </div>
+    <div style="border-radius:14px;background:var(--stage);color:var(--stage-ink);box-shadow:var(--shadow-md);border:1px solid var(--stage-line);padding:24px 24px 26px">
+      <div style="display:flex;align-items:flex-end;gap:3px;height:34px;margin-bottom:22px;opacity:.6">
+        <span style="width:4px;height:100%;background:#5A79EE;border-radius:2px;transform-origin:bottom;animation:k-bar 1.4s ease-in-out infinite"></span>
+        <span style="width:4px;height:100%;background:#5A79EE;border-radius:2px;transform-origin:bottom;animation:k-bar 1.4s ease-in-out .15s infinite"></span>
+        <span style="width:4px;height:100%;background:#5A79EE;border-radius:2px;transform-origin:bottom;animation:k-bar 1.4s ease-in-out .3s infinite"></span>
+        <span style="width:4px;height:100%;background:#5A79EE;border-radius:2px;transform-origin:bottom;animation:k-bar 1.4s ease-in-out .45s infinite"></span>
+        <span style="width:4px;height:100%;background:#5A79EE;border-radius:2px;transform-origin:bottom;animation:k-bar 1.4s ease-in-out .6s infinite"></span>
+        <span style="width:4px;height:100%;background:#5A79EE;border-radius:2px;transform-origin:bottom;animation:k-bar 1.4s ease-in-out .75s infinite"></span>
+        <span style="width:4px;height:100%;background:#5A79EE;border-radius:2px;transform-origin:bottom;animation:k-bar 1.4s ease-in-out .9s infinite"></span>
+      </div>
+      <div style="margin-bottom:22px">
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--stage-ink-56);margin-bottom:10px"><span>Game</span><span data-k="mixval" data-ch="game" style="font-variant-numeric:tabular-nums;color:var(--stage-ink)">100%</span></div>
+        <div data-k="mix" data-ch="game" style="height:8px;border-radius:99px;background:rgba(255,255,255,.12);cursor:pointer"><div data-k="mixfill" data-ch="game" style="width:100%;height:100%;border-radius:99px;background:var(--cobalt);position:relative"><span style="position:absolute;right:-7px;top:-4px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.5)"></span></div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--stage-ink-56);margin-bottom:10px"><span>Mic</span><span data-k="mixval" data-ch="mic" style="font-variant-numeric:tabular-nums;color:var(--stage-ink)">70%</span></div>
+        <div data-k="mix" data-ch="mic" style="height:8px;border-radius:99px;background:rgba(255,255,255,.12);cursor:pointer"><div data-k="mixfill" data-ch="mic" style="width:70%;height:100%;border-radius:99px;background:var(--cobalt);position:relative"><span style="position:absolute;right:-7px;top:-4px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.5)"></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-reveal="1" style="max-width:1200px;margin:0 auto;padding:clamp(64px,8vw,112px) var(--edge) 0;opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)">
+  <span style="display:block;font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--cobalt);margin-bottom:18px">Export profiles</span>
+  <h2 style="font-family:var(--font-heading);font-weight:500;font-size:clamp(28px,3.4vw,44px);line-height:1.08;letter-spacing:-.026em;margin:0;max-width:26ch">Choose where the clip is going. Kaiju handles the settings.</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:34px">
+    <button type="button" data-k="profile" style="text-align:left;cursor:pointer;padding:20px 20px 22px;border-radius:12px;background:var(--color-surface);border:1px solid var(--cobalt);box-shadow:0 0 0 3px rgba(23,64,214,.12);font-family:inherit;color:inherit;transition:all .2s ease">
+      <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cobalt);margin-bottom:30px">Discord</div>
+      <div style="font-family:var(--font-heading);font-size:26px;letter-spacing:-.02em;font-variant-numeric:tabular-nums">25 MB</div>
+      <div style="font-size:14px;color:var(--ink-52);margin-top:2px">1080p</div>
+    </button>
+    <button type="button" data-k="profile" style="text-align:left;cursor:pointer;padding:20px 20px 22px;border-radius:12px;background:var(--color-surface);border:1px solid var(--color-divider);font-family:inherit;color:inherit;transition:all .2s ease">
+      <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-36);margin-bottom:30px">YouTube</div>
+      <div style="font-family:var(--font-heading);font-size:26px;letter-spacing:-.02em">4K</div>
+      <div style="font-size:14px;color:var(--ink-52);margin-top:2px">High quality</div>
+    </button>
+    <button type="button" data-k="profile" style="text-align:left;cursor:pointer;padding:20px 20px 22px;border-radius:12px;background:var(--color-surface);border:1px solid var(--color-divider);font-family:inherit;color:inherit;transition:all .2s ease">
+      <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-36);margin-bottom:30px">Phone</div>
+      <div style="font-family:var(--font-heading);font-size:26px;letter-spacing:-.02em">1080p</div>
+      <div style="font-size:14px;color:var(--ink-52);margin-top:2px">Small</div>
+    </button>
+    <button type="button" data-k="profile" style="text-align:left;cursor:pointer;padding:20px 20px 22px;border-radius:12px;background:var(--color-surface);border:1px solid var(--color-divider);font-family:inherit;color:inherit;transition:all .2s ease">
+      <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-36);margin-bottom:30px">Archive</div>
+      <div style="font-family:var(--font-heading);font-size:26px;letter-spacing:-.02em">Original</div>
+      <div style="font-size:14px;color:var(--ink-52);margin-top:2px">Untouched quality</div>
+    </button>
+  </div>
+</section>
+
+<section data-reveal="1" style="max-width:1200px;margin:0 auto;padding:clamp(64px,8vw,112px) var(--edge) 0;opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(26px,4vw,64px);align-items:center">
+    <div>
+      <span style="display:block;font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--cobalt);margin-bottom:18px">Shortcuts</span>
+      <h2 style="font-family:var(--font-heading);font-weight:500;font-size:clamp(28px,3.2vw,42px);line-height:1.08;letter-spacing:-.026em;margin:0;max-width:22ch">Save your clips without leaving the game.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:11px;background:var(--color-surface);box-shadow:var(--shadow-sm)">
+        <span style="display:inline-flex;gap:5px;font-family:var(--font-heading);font-size:14px">
+          <span style="display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:32px;padding:0 8px;border-radius:8px;background:var(--cream-sunk);box-shadow:inset 0 -2px 0 rgba(12,22,49,.1)">⇧</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:32px;padding:0 8px;border-radius:8px;background:var(--cream-sunk);box-shadow:inset 0 -2px 0 rgba(12,22,49,.1)">F9</span>
+        </span>
+        <span style="font-size:15.5px">Save the last 30 seconds</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:11px;background:var(--color-surface);box-shadow:var(--shadow-sm)">
+        <span style="display:inline-flex;gap:5px;font-family:var(--font-heading);font-size:14px">
+          <span style="display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:32px;padding:0 8px;border-radius:8px;background:var(--cream-sunk);box-shadow:inset 0 -2px 0 rgba(12,22,49,.1)">⇧</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:32px;padding:0 8px;border-radius:8px;background:var(--cream-sunk);box-shadow:inset 0 -2px 0 rgba(12,22,49,.1)">F10</span>
+        </span>
+        <span style="font-size:15.5px">Start or stop recording</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:11px;background:var(--color-surface);box-shadow:var(--shadow-sm)">
+        <span style="display:inline-flex;gap:5px;font-family:var(--font-heading);font-size:14px">
+          <span style="display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:32px;padding:0 8px;border-radius:8px;background:var(--cream-sunk);box-shadow:inset 0 -2px 0 rgba(12,22,49,.1)">⌘</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:32px;padding:0 8px;border-radius:8px;background:var(--cream-sunk);box-shadow:inset 0 -2px 0 rgba(12,22,49,.1)">⇧</span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:32px;padding:0 8px;border-radius:8px;background:var(--cream-sunk);box-shadow:inset 0 -2px 0 rgba(12,22,49,.1)">E</span>
+        </span>
+        <span style="font-size:15.5px">Export with the last profile</span>
+      </div>
+      <p style="margin:6px 0 0;font-size:14px;color:var(--ink-36)">Every shortcut is remappable, and Command variants work too.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" data-reveal="1" style="max-width:1200px;margin:0 auto;padding:clamp(64px,8vw,116px) var(--edge) 0;opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)">
+  <div style="display:grid;grid-template-columns:minmax(0,.6fr) minmax(0,1.4fr);gap:clamp(24px,4vw,64px)">
+    <h2 style="font-family:var(--font-heading);font-weight:500;font-size:clamp(28px,3.2vw,40px);line-height:1.08;letter-spacing:-.026em;margin:0">Questions</h2>
+    <div>
+      <div data-k="faq" style="border-top:1px solid var(--color-divider);cursor:pointer">
+        <div style="display:flex;align-items:center;gap:16px;padding:20px 0">
+          <span style="flex:1;font-family:var(--font-heading);font-size:19px;letter-spacing:-.015em">What is Kaiju?</span>
+          <span data-k="faqicon" style="color:var(--cobalt);font-size:19px;transition:transform .25s ease">+</span>
+        </div>
+        <div data-k="faqbody" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
+          <p style="margin:0 0 22px;font-size:16.5px;color:var(--ink-72);max-width:60ch">A Mac app for capturing, trimming and sharing gameplay clips. Record a session or let Instant Replay hold the last thirty seconds, then trim and export without opening anything else.</p>
+        </div>
+      </div>
+      <div data-k="faq" style="border-top:1px solid var(--color-divider);cursor:pointer">
+        <div style="display:flex;align-items:center;gap:16px;padding:20px 0">
+          <span style="flex:1;font-family:var(--font-heading);font-size:19px;letter-spacing:-.015em">What Macs does Kaiju support?</span>
+          <span data-k="faqicon" style="color:var(--cobalt);font-size:19px;transition:transform .25s ease">+</span>
+        </div>
+        <div data-k="faqbody" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
+          <p style="margin:0 0 22px;font-size:16.5px;color:var(--ink-72);max-width:60ch">Apple silicon Macs running macOS 14 or later. Capture and export both use the hardware media engine, so recording costs very little while you play.</p>
+        </div>
+      </div>
+      <div data-k="faq" style="border-top:1px solid var(--color-divider);cursor:pointer">
+        <div style="display:flex;align-items:center;gap:16px;padding:20px 0">
+          <span style="flex:1;font-family:var(--font-heading);font-size:19px;letter-spacing:-.015em">Does Kaiju have Instant Replay?</span>
+          <span data-k="faqicon" style="color:var(--cobalt);font-size:19px;transition:transform .25s ease">+</span>
+        </div>
+        <div data-k="faqbody" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
+          <p style="margin:0 0 22px;font-size:16.5px;color:var(--ink-72);max-width:60ch">Yes. Kaiju keeps a rolling buffer while you play; one shortcut writes it to your library as a finished clip.</p>
+        </div>
+      </div>
+      <div data-k="faq" style="border-top:1px solid var(--color-divider);cursor:pointer">
+        <div style="display:flex;align-items:center;gap:16px;padding:20px 0">
+          <span style="flex:1;font-family:var(--font-heading);font-size:19px;letter-spacing:-.015em">Can Kaiju compress clips to a specific size?</span>
+          <span data-k="faqicon" style="color:var(--cobalt);font-size:19px;transition:transform .25s ease">+</span>
+        </div>
+        <div data-k="faqbody" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
+          <p style="margin:0 0 22px;font-size:16.5px;color:var(--ink-72);max-width:60ch">Pick a target — 10, 25, 50, 100, 250 MB or your own number — and Kaiju exports a file that lands just under it, at the best quality that fits.</p>
+        </div>
+      </div>
+      <div data-k="faq" style="border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);cursor:pointer">
+        <div style="display:flex;align-items:center;gap:16px;padding:20px 0">
+          <span style="flex:1;font-family:var(--font-heading);font-size:19px;letter-spacing:-.015em">Can I record my microphone?</span>
+          <span data-k="faqicon" style="color:var(--cobalt);font-size:19px;transition:transform .25s ease">+</span>
+        </div>
+        <div data-k="faqbody" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
+          <p style="margin:0 0 22px;font-size:16.5px;color:var(--ink-72);max-width:60ch">Game audio and microphone are recorded with independent levels, so you can set the balance once and forget about it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="download" style="max-width:1200px;margin:clamp(72px,9vw,130px) auto 0;padding:0 var(--edge)">
+  <div style="border-radius:18px;background:radial-gradient(700px 320px at 88% -10%,color-mix(in srgb,var(--color-section-glow) 62%,transparent),transparent 62%),var(--color-section);color:#fff;padding:clamp(40px,6vw,76px) clamp(28px,5vw,64px)">
+    <h2 style="font-family:var(--font-heading);font-weight:500;font-size:clamp(38px,5.4vw,76px);line-height:1.04;letter-spacing:-.032em;margin:0 0 0 -.04em">Ready to clip?</h2>
+    <p style="font-size:18px;color:rgba(255,255,255,.72);max-width:44ch;margin:20px 0 32px">Free while Kaiju is in beta. Download it, play something, press one key.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <a href="Kaiju.dmg" download="Kaiju.dmg" style="display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:11px;background:#fff;color:var(--color-section);font-family:var(--font-heading);font-weight:500;font-size:17px;letter-spacing:-.01em">Download Kaiju</a>
+      <span style="font-size:14px;color:rgba(255,255,255,.6)">Universal .dmg · 38 MB · macOS 14+</span>
+    </div>
+  </div>
+</section>
+
+<footer style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,84px) var(--edge) 56px">
+  <div style="display:flex;flex-wrap:wrap;gap:24px 40px;align-items:baseline;justify-content:space-between">
+    <div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <span style="width:18px;height:18px;border-radius:5px;background:var(--cobalt);display:block"></span>
+        <span style="font-family:var(--font-heading);font-weight:600;font-size:17px;letter-spacing:-.02em">Kaiju</span>
+      </div>
+      <p style="margin:10px 0 0;font-size:14.5px;color:var(--ink-52)">Capture. Edit. Compress. Share.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:22px;font-size:14.5px">
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="#faq">Support</a>
+      <a href="#top">Privacy</a>
+      <a href="#top">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#1740D6&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#1740D6&quot;,&quot;#0047AB&quot;,&quot;#2B50E2&quot;,&quot;#123AA8&quot;],&quot;section&quot;:&quot;Brand&quot;},&quot;showCaptions&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;autoplayWorkflow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    const q = (s) => document.querySelector(s);
+    const qa = (s) => Array.from(document.querySelectorAll(s));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (this.props.accentColor) {
+      document.documentElement.style.setProperty('--cobalt', this.props.accentColor);
+      document.documentElement.style.setProperty('--color-accent', this.props.accentColor);
+    }
+    if (this.props.showCaptions === false) {
+      const cap = q('[data-k="captions"]');
+      if (cap) cap.style.display = 'none';
+    }
+
+    // reveal on scroll
+    const reveals = qa('[data-reveal]');
+    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    if (reduce || !('IntersectionObserver' in window)) {
+      reveals.forEach(show);
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -6% 0px', threshold: 0.04 });
+      reveals.forEach((el) => io.observe(el));
+      this._io = io;
+    }
+
+    // hero window settles as you scroll past it
+    const hero = q('[data-k="herowin"]');
+    if (hero && !reduce) {
+      hero.style.transform = 'translateY(18px) scale(.985)';
+      hero.style.transition = 'transform .9s cubic-bezier(.2,.7,.2,1)';
+      let raf = 0;
+      const onScroll = () => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const r = hero.getBoundingClientRect();
+          const p = Math.min(1, Math.max(0, 1 - r.top / (window.innerHeight * 0.9)));
+          hero.style.transition = 'none';
+          hero.style.transform = 'translateY(' + (18 - 18 * p).toFixed(2) + 'px) scale(' + (0.985 + 0.015 * p).toFixed(4) + ')';
+        });
+      };
+      this._onScroll = onScroll;
+      addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    // workflow pipeline
+    const steps = qa('[data-k="step"]');
+    const paint = (i) => steps.forEach((s, n) => {
+      const on = n === i;
+      s.style.background = on ? 'rgba(255,255,255,.10)' : 'var(--color-section)';
+      s.style.opacity = on ? '1' : '.62';
+    });
+    if (steps.length) {
+      paint(0);
+      if (this.props.autoplayWorkflow !== false && !reduce) {
+        let i = 0;
+        this._pipe = setInterval(() => { i = (i + 1) % steps.length; paint(i); }, 2400);
+      } else {
+        steps.forEach((s) => { s.style.opacity = '1'; });
+      }
+      steps.forEach((s, n) => s.addEventListener('mouseenter', () => paint(n)));
+    }
+
+    // target-size panel
+    const big = q('[data-k="bigmb"]');
+    const chips = qa('[data-k="chip"]');
+    const targetEl = q('[data-k="target"]');
+    const estEl = q('[data-k="est"]');
+    const qualEl = q('[data-k="qual"]');
+    const quality = { 10: 'Good', 25: 'High', 40: 'High', 50: 'High', 100: 'Very high', 250: 'Maximum' };
+    let current = 183, mb = 25, animRaf = 0;
+    const countTo = (to) => {
+      if (reduce || !big) { if (big) big.textContent = to + ' MB'; current = to; return; }
+      const from = current, t0 = performance.now(), dur = 900;
+      cancelAnimationFrame(animRaf);
+      const tick = (t) => {
+        const k = Math.min(1, (t - t0) / dur);
+        const e = 1 - Math.pow(1 - k, 3);
+        const v = from + (to - from) * e;
+        big.textContent = (v >= 100 ? Math.round(v) : v.toFixed(v < 10 ? 1 : 0)) + ' MB';
+        if (k < 1) animRaf = requestAnimationFrame(tick); else { big.textContent = to + ' MB'; current = to; }
+      };
+      animRaf = requestAnimationFrame(tick);
+    };
+    const selectChip = (btn, animate) => {
+      mb = Number(btn.getAttribute('data-mb'));
+      chips.forEach((c) => {
+        const on = c === btn;
+        c.style.borderColor = on ? 'var(--cobalt)' : 'var(--stage-line)';
+        c.style.background = on ? 'rgba(23,64,214,.3)' : 'transparent';
+        c.style.color = on ? '#fff' : 'var(--stage-ink)';
+      });
+      const label = btn.textContent.trim() === 'Custom' ? mb + ' MB' : btn.textContent.trim();
+      if (targetEl) targetEl.textContent = label;
+      if (estEl) estEl.textContent = (mb * 0.968).toFixed(1) + ' MB';
+      if (qualEl) qualEl.textContent = quality[mb] || 'High';
+      if (animate) countTo(mb);
+    };
+    chips.forEach((c) => c.addEventListener('click', () => selectChip(c, true)));
+
+    // the headline number counts down from the original when the section arrives
+    if (big && 'IntersectionObserver' in window && !reduce) {
+      big.textContent = '183 MB';
+      const io2 = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { countTo(mb); io2.disconnect(); } });
+      }, { threshold: 0.5 });
+      io2.observe(big);
+      this._io2 = io2;
+    }
+
+    // export progress
+    const exp = q('[data-k="export"]');
+    const bar = q('[data-k="progress"]');
+    const expLabel = q('[data-k="exportlabel"]');
+    if (exp && bar && expLabel) {
+      let busy = false;
+      exp.addEventListener('click', () => {
+        if (busy) return;
+        busy = true;
+        const t0 = performance.now(), dur = 1700;
+        const tick = (t) => {
+          const k = Math.min(1, (t - t0) / dur);
+          bar.style.width = (k * 100).toFixed(1) + '%';
+          expLabel.textContent = 'Exporting… ' + Math.round(k * 100) + '%';
+          if (k < 1) requestAnimationFrame(tick);
+          else {
+            expLabel.textContent = 'Exported · ' + (mb * 0.968).toFixed(1) + ' MB';
+            setTimeout(() => { bar.style.width = '0%'; expLabel.textContent = 'Export'; busy = false; }, 2200);
+          }
+        };
+        requestAnimationFrame(tick);
+      });
+    }
+
+    // theater player
+    const play = q('[data-k="play"]');
+    const fill = q('[data-k="pfill"]');
+    const time = q('[data-k="ptime"]');
+    const track = q('[data-k="track"]');
+    const player = q('[data-k="player"]');
+    const fs = q('[data-k="fs"]');
+    const DUR = 32;
+    let t = 7, playing = false, pRaf = 0, last = 0;
+    const fmt = (s) => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+    const draw = () => {
+      if (fill) fill.style.width = (t / DUR * 100).toFixed(2) + '%';
+      if (time) time.textContent = fmt(t) + ' / ' + fmt(DUR);
+    };
+    const loop = (now) => {
+      if (!playing) return;
+      t += (now - last) / 1000; last = now;
+      if (t >= DUR) t = 0;
+      draw();
+      pRaf = requestAnimationFrame(loop);
+    };
+    const setPlaying = (v) => {
+      playing = v;
+      if (play) { play.textContent = v ? '❙❙' : '▶'; play.setAttribute('aria-label', v ? 'Pause' : 'Play'); }
+      cancelAnimationFrame(pRaf);
+      if (v) { last = performance.now(); pRaf = requestAnimationFrame(loop); }
+    };
+    if (play) play.addEventListener('click', () => setPlaying(!playing));
+    if (track) track.addEventListener('click', (e) => {
+      const r = track.getBoundingClientRect();
+      t = Math.min(DUR, Math.max(0, (e.clientX - r.left) / r.width * DUR));
+      draw();
+    });
+    draw();
+    if (fs && player) {
+      const saved = player.getAttribute('style') || '';
+      let full = false;
+      const setFull = (v) => {
+        full = v;
+        if (v) {
+          player.setAttribute('style', saved + ';position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:120;border-radius:0;background:#04060C;display:flex;align-items:center;justify-content:center;transition:none');
+          document.body.style.overflow = 'hidden';
+          fs.textContent = '⤡';
+          setPlaying(true);
+        } else {
+          player.setAttribute('style', saved);
+          document.body.style.overflow = '';
+          fs.textContent = '⤢';
+        }
+      };
+      fs.addEventListener('click', () => setFull(!full));
+      this._onKey = (e) => { if (e.key === 'Escape' && full) setFull(false); };
+      addEventListener('keydown', this._onKey);
+    }
+
+    // audio mixer
+    qa('[data-k="mix"]').forEach((tr) => {
+      const ch = tr.getAttribute('data-ch');
+      const f = q('[data-k="mixfill"][data-ch="' + ch + '"]');
+      const v = q('[data-k="mixval"][data-ch="' + ch + '"]');
+      let down = false;
+      const set = (e) => {
+        const r = tr.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+        const pct = Math.round(p * 100);
+        if (f) f.style.width = pct + '%';
+        if (v) v.textContent = pct + '%';
+      };
+      tr.addEventListener('pointerdown', (e) => { down = true; tr.setPointerCapture(e.pointerId); set(e); });
+      tr.addEventListener('pointermove', (e) => { if (down) set(e); });
+      tr.addEventListener('pointerup', () => { down = false; });
+      tr.addEventListener('pointercancel', () => { down = false; });
+    });
+
+    // export profiles
+    const profiles = qa('[data-k="profile"]');
+    profiles.forEach((p) => p.addEventListener('click', () => {
+      profiles.forEach((o) => {
+        const on = o === p;
+        o.style.borderColor = on ? 'var(--cobalt)' : 'var(--color-divider)';
+        o.style.boxShadow = on ? '0 0 0 3px rgba(23,64,214,.12)' : 'none';
+        const kicker = o.firstElementChild;
+        if (kicker) kicker.style.color = on ? 'var(--cobalt)' : 'var(--ink-36)';
+      });
+    }));
+
+    // faq
+    qa('[data-k="faq"]').forEach((row) => {
+      const body = row.querySelector('[data-k="faqbody"]');
+      const icon = row.querySelector('[data-k="faqicon"]');
+      row.addEventListener('click', () => {
+        const open = row.getAttribute('data-open') === '1';
+        row.setAttribute('data-open', open ? '0' : '1');
+        if (body) {
+          body.style.maxHeight = open ? '0px' : body.scrollHeight + 40 + 'px';
+          body.style.opacity = open ? '0' : '1';
+        }
+        if (icon) icon.style.transform = open ? 'none' : 'rotate(45deg)';
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._pipe);
+    if (this._io) this._io.disconnect();
+    if (this._io2) this._io2.disconnect();
+    if (this._onScroll) removeEventListener('scroll', this._onScroll);
+    if (this._onKey) removeEventListener('keydown', this._onKey);
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
