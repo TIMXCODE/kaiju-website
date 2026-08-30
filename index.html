@@ -43,6 +43,35 @@ p{
   height:1px;
   background:linear-gradient(90deg,#ff7a2f,transparent)
 }
+.countdown {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.countdown div {
+  min-width: 100px;
+  padding: 18px;
+  border: 1px solid #252525;
+  border-radius: 16px;
+  background: #101010;
+  text-align: center;
+}
+
+.countdown strong {
+  display: block;
+  font-size: 30px;
+}
+
+.countdown span {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
 </style>
 </head>
 <body>
@@ -59,9 +88,40 @@ p{
     to make sure everything is secure before bringing it back.
   </p>
   <p class="time">
-    Kaiju should be back online by Tuesday at 3:00 PM.
+    Kaiju will be back online Tuesday at 3:00 PM.
   </p>
+
+  <div class="countdown">
+    <div><strong id="days">00</strong><span>Days</span></div>
+    <div><strong id="hours">00</strong><span>Hours</span></div>
+    <div><strong id="minutes">00</strong><span>Minutes</span></div>
+    <div><strong id="seconds">00</strong><span>Seconds</span></div>
+  </div>
   <div class="rule"></div>
+
+  <script>
+    const target = new Date("2026-09-01T15:00:00-04:00").getTime();
+
+    function updateCountdown() {
+      const remaining = Math.max(0, target - Date.now());
+      const total = Math.floor(remaining / 1000);
+
+      document.getElementById("days").textContent =
+        String(Math.floor(total / 86400)).padStart(2, "0");
+
+      document.getElementById("hours").textContent =
+        String(Math.floor((total % 86400) / 3600)).padStart(2, "0");
+
+      document.getElementById("minutes").textContent =
+        String(Math.floor((total % 3600) / 60)).padStart(2, "0");
+
+      document.getElementById("seconds").textContent =
+        String(total % 60).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </main>
 </body>
 </html>
