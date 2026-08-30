@@ -5,32 +5,56 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kaiju — Temporarily Offline</title>
 <style>
-:root{color-scheme:dark;--bg:#06111f;--panel:#0b1a2d;--line:rgba(255,255,255,.1);--text:#f4f7fb;--muted:#9baabd;--blue:#4da3ff;--warn:#ff9d4d}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
-body{min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-body:before{content:"";position:fixed;inset:-20%;background:radial-gradient(circle at 50% 35%,rgba(49,130,220,.16),transparent 35%);pointer-events:none}
-main{position:relative;width:min(760px,calc(100% - 40px));text-align:center;padding:48px 28px}
-.logo{width:64px;height:64px;margin:0 auto 28px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,#15365a,#0b2039);border:1px solid var(--line);box-shadow:0 20px 70px rgba(0,0,0,.35);font-size:30px;font-weight:700;letter-spacing:-.06em}
-.status{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid rgba(255,157,77,.28);background:rgba(255,157,77,.08);border-radius:999px;color:#ffb875;font-size:13px;font-weight:600;letter-spacing:.02em;margin-bottom:24px}.dot{width:7px;height:7px;border-radius:50%;background:var(--warn);box-shadow:0 0 14px rgba(255,157,77,.7)}
-h1{font-size:clamp(42px,7vw,76px);line-height:.98;letter-spacing:-.055em;margin:0 auto 24px;max-width:700px}p{font-size:18px;line-height:1.6;color:var(--muted);max-width:600px;margin:0 auto}.sub{margin-top:12px;font-size:15px;color:#748399}
-.card{margin:38px auto 0;padding:28px;border:1px solid var(--line);background:rgba(11,26,45,.72);backdrop-filter:blur(18px);border-radius:20px;max-width:540px}.card h2{font-size:20px;margin:0 0 9px;letter-spacing:-.02em}.card p{font-size:15px;line-height:1.5}
-a{display:inline-flex;margin-top:20px;height:48px;padding:0 22px;align-items:center;justify-content:center;border-radius:11px;background:var(--blue);color:#06111f;text-decoration:none;font-weight:700;transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}a:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 10px 30px rgba(77,163,255,.22)}
-footer{margin-top:34px;color:#5f7087;font-size:12px}@media(max-width:600px){main{padding:30px 18px}.logo{margin-bottom:22px}p{font-size:16px}.card{margin-top:30px;padding:23px}}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  background:#080808;
+  color:#f5f5f5;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,sans-serif
+}
+main{width:min(720px,100%)}
+.mark{
+  color:#ff7a2f;
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:28px
+}
+h1{
+  margin:0;
+  font-size:clamp(44px,8vw,76px);
+  line-height:1;
+  letter-spacing:-.045em
+}
+p{
+  max-width:600px;
+  margin:28px 0 0;
+  font-size:18px;
+  line-height:1.6;
+  color:#bdbdbd
+}
+.time{color:#f5f5f5;font-weight:600}
+.rule{
+  margin-top:44px;
+  height:1px;
+  background:linear-gradient(90deg,#ff7a2f,transparent)
+}
 </style>
 </head>
 <body>
 <main>
-<div class="logo">K</div>
-<div class="status"><span class="dot"></span> KAIJU OFFLINE</div>
-<h1>Kaiju is temporarily offline.</h1>
-<p>I don't believe in shipping unfinished software. I'm building and maintaining Kaiju on my own, and I'm only 17, so I appreciate your patience while I finish the remaining issues. Give me a little grace — I'm doing my best to make Kaiju something I'm proud to ship.</p>
-<p class="sub">We're working on it. Kaiju will be back when it's ready.</p>
-<section class="card">
-<h2>Have questions?</h2>
-<p>Join the Kaiju Discord for updates, questions, and announcements.</p>
-<a href="https://discord.com" target="_blank" rel="noopener">Join the Discord</a>
-</section>
-<footer>Kaiju · Built for Mac</footer>
+  <div class="mark">Kaiju — Maintenance</div>
+  <h1>Temporarily offline.</h1>
+  <p>
+    I found a major security flaw in the system, so I took Kaiju offline
+    while I fix it. I’m making sure everything is secure before bringing it back.
+  </p>
+  <p class="time">Kaiju should be back online by Tuesday at 3:00 PM.</p>
+  <div class="rule"></div>
 </main>
 </body>
 </html>
