@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You're in — Kaiju</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head>
+<body>
+<nav>
+  <a class="brand" href="/">Kaiju</a>
+  <a href="account.html">License &amp; account</a>
+</nav>
+<main>
+  <h1>You're in.</h1>
+  <p class="sub">Thanks for buying Kaiju. Here's your license key — it's also tied to your email, so losing it isn't fatal.</p>
+
+  <div class="card" id="loading">
+    <p style="margin:0"><span class="spinner"></span>&nbsp; Confirming your payment with Stripe…</p>
+  </div>
+
+  <div id="result" hidden>
+    <div class="keybox" id="key"></div>
+    <button class="btn ghost" id="copy" style="width:100%;margin-top:12px">Copy license key</button>
+
+    <div class="card" style="margin-top:24px">
+      <strong style="font-size:15px">Activate it in the app</strong>
+      <ol style="margin:10px 0 0;padding-left:20px;color:var(--ink-72);font-size:14.5px">
+        <li>Open Kaiju.</li>
+        <li>If the upgrade screen is showing, paste the key there and press Activate.</li>
+        <li>That's it — the license covers up to 3 Macs.</li>
+      </ol>
+      <p class="muted" style="margin:12px 0 0">
+        During early access Kaiju doesn't ask for a key at all. Keep it somewhere safe —
+        it will activate instantly when licensing switches on.
+      </p>
+    </div>
+  </div>
+
+  <div class="card" id="failed" hidden>
+    <strong>Couldn't confirm the payment yet.</strong>
+    <p style="margin:8px 0 0;color:var(--ink-72);font-size:14.5px" id="failed-detail">
+      If you just paid, give it a few seconds and refresh this page. Still stuck?
+      Email your Stripe receipt to us on <a href="account.html#help">the help page</a> and we'll sort it.
+    </p>
+  </div>
+</main>
+<footer>
+  <a href="/">kaiju.best</a>
+  <a href="account.html">Manage license</a>
+  <a href="account.html#help">Help</a>
+</footer>
+<script>
+const KAIJU_API = "https://api.kaiju.best";
+
+(async () => {
+  const sessionId = new URLSearchParams(location.search).get("session_id");
+  const loading = document.getElementById("loading");
+  if (!sessionId) {
+    loading.hidden = true;
+    document.getElementById("failed").hidden = false;
+    document.getElementById("failed-detail").textContent =
+      "This page needs to be reached from a Stripe checkout. If you already bought Kaiju, find your key on the account page.";
+    return;
+  }
+  try {
+    const res = await fetch(`${KAIJU_API}/v1/checkout/claim?session_id=${encodeURIComponent(sessionId)}`);
+    const data = await res.json();
+    loading.hidden = true;
+    if (!res.ok || !data.licenseKey) throw new Error(data.error || "unknown");
+    document.getElementById("key").textContent = data.licenseKey;
+    document.getElementById("result").hidden = false;
+  } catch (e) {
+    loading.hidden = true;
+    document.getElementById("failed").hidden = false;
+  }
+})();
+
+document.getElementById("copy").addEventListener("click", async (ev) => {
+  await navigator.clipboard.writeText(document.getElementById("key").textContent);
+  ev.target.textContent = "Copied ✓";
+  setTimeout(() => (ev.target.textContent = "Copy license key"), 1600);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buy Kaiju — Instant Replay for Mac</title>
+<meta name="description" content="Buy a Kaiju license. One-time purchase, under $5, no subscription. Free during early access.">
+<link rel="canonical" href="https://kaiju.best/buy.html">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head>
+<body>
+<nav>
+  <a class="brand" href="/">Kaiju</a>
+  <a href="account.html">License &amp; account</a>
+</nav>
+<main>
+  <h1>Buy Kaiju</h1>
+  <p class="sub">One-time purchase. No subscription, no account, no cloud. The license is yours, on up to 3 Macs.</p>
+
+  <!-- Honesty first: while early access is on, nobody needs to pay. -->
+  <div class="note" id="free-note" hidden>
+    <strong>Kaiju is free right now.</strong> Every feature is unlocked during early access —
+    you don't need to buy anything today. This page exists for when early access ends
+    (and for anyone who wants to support the project early).
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="kv"><span>Price</span><span><strong>Under $5, once</strong></span></div>
+    <div class="kv"><span>Macs per license</span><span>3</span></div>
+    <div class="kv"><span>Updates</span><span>Included</span></div>
+    <div class="kv"><span>Works offline</span><span>Yes — 7-day grace between checks</span></div>
+    <div class="kv"><span>Refunds</span><span>14 days, no questions</span></div>
+  </div>
+
+  <button class="btn" id="buy" style="width:100%;padding:15px">Buy Kaiju</button>
+  <p class="muted" style="text-align:center;margin-top:10px">
+    Payment handled by Stripe. Card details never touch our servers.
+  </p>
+  <p class="muted" style="text-align:center" id="error" hidden></p>
+</main>
+<footer>
+  <a href="/">kaiju.best</a>
+  <a href="account.html">Manage license</a>
+  <a href="account.html#help">Help</a>
+</footer>
+<script>
+// ── configuration ────────────────────────────────────────────────
+// Set to the deployed Worker URL, e.g. "https://kaiju-licensing.<you>.workers.dev"
+// or "https://api.kaiju.best" once the custom domain is routed.
+const KAIJU_API = "https://api.kaiju.best";
+// ─────────────────────────────────────────────────────────────────
+
+const buy = document.getElementById("buy");
+const err = document.getElementById("error");
+
+// Show the "it's free right now" note while the server says free mode is on.
+(async () => {
+  try {
+    const res = await fetch(`${KAIJU_API}/v1/config`);
+    const envelope = await res.json();
+    // Display-only peek at the payload; the app verifies signatures, the
+    // website just decides whether to show a note.
+    const payload = JSON.parse(atob(envelope.payload.replaceAll("-", "+").replaceAll("_", "/")));
+    if (payload.freeMode) document.getElementById("free-note").hidden = false;
+  } catch (_) { /* no note, no problem */ }
+})();
+
+buy.addEventListener("click", async () => {
+  buy.disabled = true;
+  buy.innerHTML = '<span class="spinner"></span> Opening checkout…';
+  err.hidden = true;
+  try {
+    const res = await fetch(`${KAIJU_API}/v1/checkout`, { method: "POST" });
+    const data = await res.json();
+    if (!res.ok || !data.url) throw new Error(data.message || "Checkout unavailable");
+    location.href = data.url;
+  } catch (e) {
+    buy.disabled = false;
+    buy.textContent = "Buy Kaiju";
+    err.textContent = "Couldn't start checkout — " + e.message + ". Try again in a minute, or ask on Discord.";
+    err.hidden = false;
+  }
+});
+</script>
+</body>
+</html>

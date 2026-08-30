@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>License &amp; account — Kaiju</title>
+<meta name="description" content="Check your Kaiju license status, see activated Macs, and deactivate old devices.">
+<link rel="canonical" href="https://kaiju.best/account.html">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_shared.css">
+</head>
+<body>
+<nav>
+  <a class="brand" href="/">Kaiju</a>
+  <a href="buy.html">Buy Kaiju</a>
+</nav>
+<main>
+  <h1>License &amp; account</h1>
+  <p class="sub">Enter your license key to see its status and manage which Macs it's active on.</p>
+
+  <form class="card" id="lookup-form" style="display:flex;gap:10px;flex-wrap:wrap">
+    <input type="text" id="key-input" placeholder="KAIJU-XXXX-XXXX-XXXX-XXXX"
+           autocomplete="off" spellcheck="false" style="flex:1;min-width:240px">
+    <button class="btn" id="lookup" type="submit">Check license</button>
+  </form>
+  <p class="muted" id="lookup-error" hidden></p>
+
+  <div id="status" hidden>
+    <div class="card">
+      <div class="kv"><span>Status</span><span id="s-status"></span></div>
+      <div class="kv"><span>Key</span><span id="s-key" style="font-family:ui-monospace,Menlo,monospace"></span></div>
+      <div class="kv"><span>Type</span><span id="s-kind"></span></div>
+      <div class="kv"><span>Email</span><span id="s-email"></span></div>
+      <div class="kv" id="s-expiry-row" hidden><span>Expires</span><span id="s-expiry"></span></div>
+    </div>
+
+    <div class="card">
+      <strong style="font-size:15px">Activated Macs <span class="muted" id="s-slots"></span></strong>
+      <div id="devices" style="margin-top:6px"></div>
+      <p class="muted" id="no-devices" style="margin:10px 0 0" hidden>No Macs activated yet.</p>
+    </div>
+  </div>
+
+  <section class="faq" id="help" style="margin-top:40px">
+    <h2 style="font-size:19px;margin:0 0 4px">Help</h2>
+
+    <h3>I lost my license key</h3>
+    <p>Your key was shown right after checkout and is tied to the email you paid with.
+       Find your Stripe receipt (search your inbox for "Kaiju" or "Stripe") and ask on
+       <a href="https://discord.gg/HVwaRzhcX">Discord</a> or via
+       <a href="https://github.com/TIMXCODE/Kaiju/issues">GitHub</a> — quote the receipt,
+       never the card number.</p>
+
+    <h3>"This license is already active on 3 Macs"</h3>
+    <p>Look the key up above and deactivate a Mac you no longer use. The slot frees up immediately.</p>
+
+    <h3>Does Kaiju work offline?</h3>
+    <p>Yes. Once a Mac has verified its license, it keeps working for 7 days with no connection at all,
+       and re-checks quietly when you're back online.</p>
+
+    <h3>Do I need an account?</h3>
+    <p>No. The license key is the whole system — there's no account, no password, and nothing tracked.</p>
+
+    <h3>Refunds</h3>
+    <p>14 days, no questions. Ask through Discord or GitHub with your receipt. A refund revokes the license.</p>
+
+    <h3>Is Kaiju free right now?</h3>
+    <p>Yes — during early access everything is unlocked and no key is needed. Keys bought today
+       activate automatically if licensing ever switches on.</p>
+  </section>
+</main>
+<footer>
+  <a href="/">kaiju.best</a>
+  <a href="buy.html">Buy Kaiju</a>
+  <a href="https://discord.gg/HVwaRzhcX">Discord</a>
+  <a href="https://github.com/TIMXCODE/Kaiju/issues">Support</a>
+</footer>
+<script>
+const KAIJU_API = "https://api.kaiju.best";
+const form = document.getElementById("lookup-form");
+const err = document.getElementById("lookup-error");
+let currentKey = "";
+
+form.addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const key = document.getElementById("key-input").value.trim().toUpperCase();
+  if (!key) return;
+  const btn = document.getElementById("lookup");
+  btn.disabled = true; err.hidden = true;
+  try {
+    const res = await fetch(`${KAIJU_API}/v1/license?key=${encodeURIComponent(key)}`);
+    const data = await res.json();
+    if (res.status === 404) throw new Error("That key wasn't found. Check for typos — 0/O and 1/I never appear in Kaiju keys.");
+    if (!res.ok) throw new Error("The licensing server had a problem. Try again shortly.");
+    currentKey = key;
+    render(data);
+  } catch (e) {
+    document.getElementById("status").hidden = true;
+    err.textContent = e.message; err.hidden = false;
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+function render(data) {
+  const pill = { licensed: ["ok", "Active"], expired: ["warn", "Expired"], revoked: ["bad", "Revoked"] }[data.status] || ["warn", data.status];
+  document.getElementById("s-status").innerHTML = `<span class="pill ${pill[0]}">${pill[1]}</span>`;
+  document.getElementById("s-key").textContent = "KAIJU-••••-••••-••••-" + data.keySuffix;
+  document.getElementById("s-kind").textContent = data.kind === "subscription" ? "Subscription" : "One-time (lifetime)";
+  document.getElementById("s-email").textContent = data.email || "—";
+  const expRow = document.getElementById("s-expiry-row");
+  if (data.expiresAt) {
+    expRow.hidden = false;
+    document.getElementById("s-expiry").textContent = new Date(data.expiresAt * 1000).toLocaleDateString();
+  } else expRow.hidden = true;
+
+  document.getElementById("s-slots").textContent = `(${data.devices.length} of ${data.deviceLimit})`;
+  const list = document.getElementById("devices");
+  list.innerHTML = "";
+  document.getElementById("no-devices").hidden = data.devices.length > 0;
+  for (const d of data.devices) {
+    const row = document.createElement("div");
+    row.className = "device";
+    const seen = d.lastSeenAt ? new Date(d.lastSeenAt * 1000).toLocaleDateString() : "—";
+    row.innerHTML = `<div><div>${escapeHTML(d.name)}</div>
+      <div class="meta">id ${d.hashPrefix} · activated ${new Date(d.activatedAt * 1000).toLocaleDateString()} · last seen ${seen}</div></div>`;
+    const btn = document.createElement("button");
+    btn.className = "btn ghost"; btn.style.padding = "8px 14px"; btn.style.fontSize = "13px";
+    btn.textContent = "Deactivate";
+    btn.addEventListener("click", () => deactivate(d.id, btn));
+    row.appendChild(btn);
+    list.appendChild(row);
+  }
+  document.getElementById("status").hidden = false;
+}
+
+async function deactivate(deviceId, btn) {
+  if (!confirm("Deactivate this Mac? Kaiju on it will ask for the key again next time it checks in.")) return;
+  btn.disabled = true;
+  try {
+    const res = await fetch(`${KAIJU_API}/v1/license/deactivate-device`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key: currentKey, deviceId }),
+    });
+    if (!res.ok) throw new Error();
+    form.requestSubmit(); // re-render the fresh list
+  } catch {
+    btn.disabled = false;
+    alert("Couldn't deactivate that Mac just now. Try again in a minute.");
+  }
+}
+
+function escapeHTML(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+</script>
+</body>
+</html>
